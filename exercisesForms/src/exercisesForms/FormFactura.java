@@ -73,7 +73,7 @@ public class FormFactura extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Factura Deportivo Guayaquil");
-		lblNewLabel.setBounds(8, 0, 448, 45);
+		lblNewLabel.setBounds(18, 11, 448, 45);
 		lblNewLabel.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 23));
 		panel.add(lblNewLabel);
 		
@@ -190,14 +190,38 @@ public class FormFactura extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double valo1, valor2, valor3;
+				String cliente;
+				double valor1, valor2, valor3;
 				int cant1, cant2, cant3;
+				int subTotal1, subTotal2, subTotal3;
+				if(txtCantidad1.getText().isEmpty() || txtValorU_1.getText().isEmpty() || txtProducto1.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 1", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(txtCantidad2.getText().isEmpty() || txtValorU_2.getText().isEmpty() || txtProducto2.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 2", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(txtCantidad3.getText().isEmpty() || txtValorU_3.getText().isEmpty() || txtProducto3.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 3", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				if(txtCliente.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Datos ingresados correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+				}
+				valor1 = Double.parseDouble(txtValorU_1.getText());
+				valor2 = Double.parseDouble(txtValorU_2.getText());
+				valor3 = Double.parseDouble(txtValorU_3.getText());
 				
 				
 			}
 		});
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
-		btnCalcular.setBounds(334, 342, 95, 25);
+		btnCalcular.setBounds(334, 342, 122, 25);
 		panel.add(btnCalcular);
 		
 		btnSalir = new JButton("Salir");
