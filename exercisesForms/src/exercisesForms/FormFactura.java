@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class FormFactura extends JFrame {
 
@@ -62,14 +63,14 @@ public class FormFactura extends JFrame {
 	 */
 	public FormFactura() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 595, 590);
+		setBounds(100, 100, 627, 643);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(8, 10, 571, 541);
+		panel.setBounds(8, 10, 603, 594);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -105,12 +106,12 @@ public class FormFactura extends JFrame {
 		
 		JLabel lblNewLabel_1_1_1_2 = new JLabel("CANTIDAD");
 		lblNewLabel_1_1_1_2.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_2.setBounds(353, 162, 76, 45);
+		lblNewLabel_1_1_1_2.setBounds(28, 310, 76, 36);
 		panel.add(lblNewLabel_1_1_1_2);
 		
 		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("VALOR TOTAL");
 		lblNewLabel_1_1_1_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_1_1.setBounds(441, 162, 96, 45);
+		lblNewLabel_1_1_1_1_1.setBounds(116, 310, 96, 36);
 		panel.add(lblNewLabel_1_1_1_1_1);
 		
 		txtProducto1 = new JTextField();
@@ -124,12 +125,12 @@ public class FormFactura extends JFrame {
 		txtValorU_1.setColumns(10);
 		
 		txtCantidad1 = new JTextField();
-		txtCantidad1.setBounds(353, 203, 76, 18);
+		txtCantidad1.setBounds(28, 349, 76, 18);
 		panel.add(txtCantidad1);
 		txtCantidad1.setColumns(10);
 		
 		txtValorT1 = new JTextField();
-		txtValorT1.setBounds(451, 203, 86, 18);
+		txtValorT1.setBounds(126, 349, 86, 18);
 		panel.add(txtValorT1);
 		txtValorT1.setColumns(10);
 		
@@ -155,32 +156,32 @@ public class FormFactura extends JFrame {
 		
 		txtCantidad2 = new JTextField();
 		txtCantidad2.setColumns(10);
-		txtCantidad2.setBounds(353, 231, 76, 18);
+		txtCantidad2.setBounds(28, 377, 76, 18);
 		panel.add(txtCantidad2);
 		
 		txtValorT2 = new JTextField();
 		txtValorT2.setColumns(10);
-		txtValorT2.setBounds(451, 231, 86, 18);
+		txtValorT2.setBounds(126, 377, 86, 18);
 		panel.add(txtValorT2);
 		
 		txtCantidad3 = new JTextField();
 		txtCantidad3.setColumns(10);
-		txtCantidad3.setBounds(353, 259, 76, 18);
+		txtCantidad3.setBounds(28, 405, 76, 18);
 		panel.add(txtCantidad3);
 		
 		txtValorT3 = new JTextField();
 		txtValorT3.setColumns(10);
-		txtValorT3.setBounds(451, 259, 86, 18);
+		txtValorT3.setBounds(126, 405, 86, 18);
 		panel.add(txtValorT3);
 		
 		lblNewLabel_1_1_1_3 = new JLabel("TOTAL COMPRA:");
 		lblNewLabel_1_1_1_3.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_3.setBounds(323, 287, 120, 45);
+		lblNewLabel_1_1_1_3.setBounds(18, 433, 124, 45);
 		panel.add(lblNewLabel_1_1_1_3);
 		
 		txtTotalCompra = new JTextField();
 		txtTotalCompra.setColumns(10);
-		txtTotalCompra.setBounds(451, 301, 86, 18);
+		txtTotalCompra.setBounds(150, 447, 86, 18);
 		panel.add(txtTotalCompra);
 		
 		lblResultado = new JLabel("");
@@ -230,7 +231,7 @@ public class FormFactura extends JFrame {
 			}
 		});
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
-		btnCalcular.setBounds(323, 342, 122, 25);
+		btnCalcular.setBounds(20, 476, 122, 25);
 		panel.add(btnCalcular);
 		
 		btnSalir = new JButton("Salir");
@@ -263,6 +264,10 @@ public class FormFactura extends JFrame {
 		btnCliente.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
 		btnCliente.setBounds(244, 111, 102, 21);
 		panel.add(btnCliente);
+		
+		JTextArea areaResultado = new JTextArea();
+		areaResultado.setBounds(318, 173, 244, 394);
+		panel.add(areaResultado);
 
 	}
 }
