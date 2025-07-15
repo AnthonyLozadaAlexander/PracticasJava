@@ -226,7 +226,7 @@ public class FormFactura extends JFrame {
 			}
 		});
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
-		btnCalcular.setBounds(334, 342, 122, 25);
+		btnCalcular.setBounds(323, 342, 122, 25);
 		panel.add(btnCalcular);
 		
 		btnSalir = new JButton("Salir");
