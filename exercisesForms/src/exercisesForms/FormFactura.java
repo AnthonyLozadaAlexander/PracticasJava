@@ -36,6 +36,7 @@ public class FormFactura extends JFrame {
 	private JTextField txtTotalCompra;
 	private JLabel lblResultado;
 	private JButton btnSalir;
+	private JButton btnCliente;
 
 	/**
 	 * Launch the application.
@@ -73,7 +74,7 @@ public class FormFactura extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Factura Deportivo Guayaquil");
-		lblNewLabel.setBounds(18, 11, 448, 45);
+		lblNewLabel.setBounds(18, 11, 367, 45);
 		lblNewLabel.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 23));
 		panel.add(lblNewLabel);
 		
@@ -194,6 +195,7 @@ public class FormFactura extends JFrame {
 				double valor1, valor2, valor3;
 				int cant1, cant2, cant3;
 				int subTotal1, subTotal2, subTotal3;
+				
 				if(txtCantidad1.getText().isEmpty() || txtValorU_1.getText().isEmpty() || txtProducto1.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 1", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
@@ -206,16 +208,19 @@ public class FormFactura extends JFrame {
 					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 3", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if(txtCliente.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Datos ingresados correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
-				}
+				
+				
 				valor1 = Double.parseDouble(txtValorU_1.getText());
 				valor2 = Double.parseDouble(txtValorU_2.getText());
 				valor3 = Double.parseDouble(txtValorU_3.getText());
+				
+				cant1 = Integer.parseInt(txtCantidad1.getText());
+				cant2 = Integer.parseInt(txtCantidad2.getText());
+				cant3 = Integer.parseInt(txtCantidad3.getText());
+				
+				subTotal1 = (int) (valor1 * cant1);
+				subTotal2 = (int) (valor2 * cant2);
+				subTotal3 = (int) (valor3 * cant3);
 				
 				
 			}
@@ -236,6 +241,24 @@ public class FormFactura extends JFrame {
 		btnSalir.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 15));
 		btnSalir.setBounds(464, 11, 86, 29);
 		panel.add(btnSalir);
+		
+		btnCliente = new JButton("Ingresar");
+		btnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String cliente = txtCliente.getText();
+				if(txtCliente.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else {
+					// Aquí podrías agregar más lógica para manejar el cliente, como guardarlo en una base de datos o procesarlo de alguna manera.
+					JOptionPane.showMessageDialog(null, "Nombre ingresado correctamente: " + cliente + "      ", "Exito", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+		btnCliente.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
+		btnCliente.setBounds(244, 111, 102, 21);
+		panel.add(btnCliente);
 
 	}
 }
