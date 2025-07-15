@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -17,22 +19,23 @@ public class FormFactura extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
+	private JTextField txtCliente;
+	private JTextField txtProducto1;
+	private JTextField txtValorU_1;
+	private JTextField txtCantidad1;
+	private JTextField txtValorT1;
+	private JTextField txtProducto2;
+	private JTextField txtValorU_2;
+	private JTextField txtProducto3;
+	private JTextField txtValorU_3;
+	private JTextField txtCantidad2;
+	private JTextField txtValorT2;
+	private JTextField txtCantidad3;
+	private JTextField txtValorT3;
 	private JLabel lblNewLabel_1_1_1_3;
-	private JTextField textField_13;
+	private JTextField txtTotalCompra;
 	private JLabel lblResultado;
+	private JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -84,10 +87,10 @@ public class FormFactura extends JFrame {
 		lblNewLabel_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
 		panel.add(lblNewLabel_1_1);
 		
-		textField = new JTextField();
-		textField.setBounds(106, 113, 130, 18);
-		panel.add(textField);
-		textField.setColumns(10);
+		txtCliente = new JTextField();
+		txtCliente.setBounds(106, 113, 130, 18);
+		panel.add(txtCliente);
+		txtCliente.setColumns(10);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("PRODUCTO");
 		lblNewLabel_1_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
@@ -109,75 +112,75 @@ public class FormFactura extends JFrame {
 		lblNewLabel_1_1_1_1_1.setBounds(441, 162, 96, 45);
 		panel.add(lblNewLabel_1_1_1_1_1);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(28, 203, 76, 18);
-		panel.add(textField_1);
-		textField_1.setColumns(10);
+		txtProducto1 = new JTextField();
+		txtProducto1.setBounds(28, 203, 76, 18);
+		panel.add(txtProducto1);
+		txtProducto1.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(152, 203, 120, 18);
-		panel.add(textField_2);
-		textField_2.setColumns(10);
+		txtValorU_1 = new JTextField();
+		txtValorU_1.setBounds(152, 203, 120, 18);
+		panel.add(txtValorU_1);
+		txtValorU_1.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(353, 203, 76, 18);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		txtCantidad1 = new JTextField();
+		txtCantidad1.setBounds(353, 203, 76, 18);
+		panel.add(txtCantidad1);
+		txtCantidad1.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(451, 203, 86, 18);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		txtValorT1 = new JTextField();
+		txtValorT1.setBounds(451, 203, 86, 18);
+		panel.add(txtValorT1);
+		txtValorT1.setColumns(10);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(28, 231, 76, 18);
-		panel.add(textField_5);
+		txtProducto2 = new JTextField();
+		txtProducto2.setColumns(10);
+		txtProducto2.setBounds(28, 231, 76, 18);
+		panel.add(txtProducto2);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(152, 231, 120, 18);
-		panel.add(textField_6);
+		txtValorU_2 = new JTextField();
+		txtValorU_2.setColumns(10);
+		txtValorU_2.setBounds(152, 231, 120, 18);
+		panel.add(txtValorU_2);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(28, 259, 76, 18);
-		panel.add(textField_7);
+		txtProducto3 = new JTextField();
+		txtProducto3.setColumns(10);
+		txtProducto3.setBounds(28, 259, 76, 18);
+		panel.add(txtProducto3);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(152, 259, 120, 18);
-		panel.add(textField_8);
+		txtValorU_3 = new JTextField();
+		txtValorU_3.setColumns(10);
+		txtValorU_3.setBounds(152, 259, 120, 18);
+		panel.add(txtValorU_3);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(353, 231, 76, 18);
-		panel.add(textField_9);
+		txtCantidad2 = new JTextField();
+		txtCantidad2.setColumns(10);
+		txtCantidad2.setBounds(353, 231, 76, 18);
+		panel.add(txtCantidad2);
 		
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		textField_10.setBounds(451, 231, 86, 18);
-		panel.add(textField_10);
+		txtValorT2 = new JTextField();
+		txtValorT2.setColumns(10);
+		txtValorT2.setBounds(451, 231, 86, 18);
+		panel.add(txtValorT2);
 		
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		textField_11.setBounds(353, 259, 76, 18);
-		panel.add(textField_11);
+		txtCantidad3 = new JTextField();
+		txtCantidad3.setColumns(10);
+		txtCantidad3.setBounds(353, 259, 76, 18);
+		panel.add(txtCantidad3);
 		
-		textField_12 = new JTextField();
-		textField_12.setColumns(10);
-		textField_12.setBounds(451, 259, 86, 18);
-		panel.add(textField_12);
+		txtValorT3 = new JTextField();
+		txtValorT3.setColumns(10);
+		txtValorT3.setBounds(451, 259, 86, 18);
+		panel.add(txtValorT3);
 		
 		lblNewLabel_1_1_1_3 = new JLabel("TOTAL COMPRA:");
 		lblNewLabel_1_1_1_3.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
 		lblNewLabel_1_1_1_3.setBounds(323, 287, 120, 45);
 		panel.add(lblNewLabel_1_1_1_3);
 		
-		textField_13 = new JTextField();
-		textField_13.setColumns(10);
-		textField_13.setBounds(451, 301, 86, 18);
-		panel.add(textField_13);
+		txtTotalCompra = new JTextField();
+		txtTotalCompra.setColumns(10);
+		txtTotalCompra.setBounds(451, 301, 86, 18);
+		panel.add(txtTotalCompra);
 		
 		lblResultado = new JLabel("");
 		lblResultado.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
@@ -187,6 +190,8 @@ public class FormFactura extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				double valo1, valor2, valor3;
+				int cant1, cant2, cant3;
 				
 				
 			}
@@ -194,6 +199,19 @@ public class FormFactura extends JFrame {
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
 		btnCalcular.setBounds(334, 342, 95, 25);
 		panel.add(btnCalcular);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int exit = JOptionPane.showConfirmDialog(null, "Desea salir de la app?", "Salir", JOptionPane.YES_NO_OPTION);
+				if(exit == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
+		});
+		btnSalir.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 15));
+		btnSalir.setBounds(464, 11, 86, 29);
+		panel.add(btnSalir);
 
 	}
 }
