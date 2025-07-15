@@ -222,6 +222,10 @@ public class FormFactura extends JFrame {
 				subTotal2 = (int) (valor2 * cant2);
 				subTotal3 = (int) (valor3 * cant3);
 				
+				txtValorT1.setText(Integer.toString(subTotal1));
+				txtValorT2.setText(Integer.toString(subTotal2));
+				txtValorT3.setText(Integer.toString(subTotal3));
+				int totalCompra = subTotal1 + subTotal2 + subTotal3;
 				
 			}
 		});
