@@ -261,16 +261,16 @@ public class FormFactura extends JFrame {
 					factura.append("Producto["+count+"]: ").append(Productos[count].trim()).append("\n");
 				}
 				factura.append("\nCantidad Producto [1]: ").append(cant1).append("\n");
-				factura.append("Valor Unitario Producto [1]: ").append(valor1).append("\n");
-				factura.append("Subtotal Producto [1]: ").append(subTotal1).append("\n");
+			factura.append("Valor Unitario Producto [1]: ").append(valor1).append("$ \n");
+				factura.append("Subtotal Producto [1]: ").append(subTotal1).append("$ \n");
 				
 				factura.append("\nCantidad Producto [2]: ").append(cant2).append("\n");
-				factura.append("Valor Unitario Producto [2]: ").append(valor2).append("\n");
-				factura.append("Subtotal Producto [2]: ").append(subTotal2).append("\n");
+				factura.append("Valor Unitario Producto [2]: ").append(valor2).append("$ \n");
+				factura.append("Subtotal Producto [2]: ").append(subTotal2).append("$ \n");
 				
 				factura.append("\nCantidad Producto [3]: ").append(cant3).append("\n");
-				factura.append("Valor Unitario Producto [3]: ").append(valor3).append("\n");
-				factura.append("Subtotal Producto [3]: ").append(subTotal3).append("\n");
+				factura.append("Valor Unitario Producto [3]: ").append(valor3).append("$ \n");
+				factura.append("Subtotal Producto [3]: ").append(subTotal3).append("$ \n");
 				
 				txtResultado.setText(factura.toString());
 			}
@@ -310,9 +310,10 @@ public class FormFactura extends JFrame {
 		btnCliente.setBounds(244, 111, 102, 21);
 		panel.add(btnCliente);
 		
-		JTextArea txtResultado = new JTextArea();
+		txtResultado = new JTextArea(); // se necesita inicializar el JTextArea
+		txtResultado.setEditable(false);
 		txtResultado.setWrapStyleWord(true);
-		txtResultado.setBounds(354, 171, 229, 348);
+		txtResultado.setBounds(340, 178, 229, 348);
 		panel.add(txtResultado);
 
 	}
