@@ -19,9 +19,9 @@ import javax.swing.JTextArea;
 public class FormFactura extends JFrame {
 	
 	private String cliente;
-	
+	private int count = 0;
 	private String Productos[] = new String[3];
-	
+	private JTextArea txtResultado;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCliente;
@@ -78,8 +78,8 @@ public class FormFactura extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Factura Deportivo Guayaquil");
-		lblNewLabel.setBounds(18, 11, 367, 45);
+		JLabel lblNewLabel = new JLabel("Factura Deportivo ");
+		lblNewLabel.setBounds(18, 11, 236, 45);
 		lblNewLabel.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 23));
 		panel.add(lblNewLabel);
 		
@@ -196,7 +196,7 @@ public class FormFactura extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StringBuilder sb = new StringBuilder("Datos de la Factura:\n");
+				StringBuilder factura = new StringBuilder("Datos de la Factura:\n");
 				double valor1, valor2, valor3;
 				int cant1, cant2, cant3;
 				int subTotal1, subTotal2, subTotal3;
@@ -213,11 +213,26 @@ public class FormFactura extends JFrame {
 					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 3", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				if(cliente.trim().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+				
+				if(txtProducto1.getText().isEmpty() || txtProducto2.getText().isEmpty() || txtProducto3.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre de todos los productos", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
+				// Parseamos los valores ingresados
 				
+				count = 0;
+				while(count<Productos.length) {
+					if(count == 0) {
+						Productos[count] = txtProducto1.getText();
+					} else if(count == 1) {
+						Productos[count] = txtProducto2.getText();
+					} else if(count == 2) {
+						Productos[count] = txtProducto3.getText();
+					}
+				count++;
+				}
+				
+				try {
 				valor1 = Double.parseDouble(txtValorU_1.getText());
 				valor2 = Double.parseDouble(txtValorU_2.getText());
 				valor3 = Double.parseDouble(txtValorU_3.getText());
@@ -225,6 +240,10 @@ public class FormFactura extends JFrame {
 				cant1 = Integer.parseInt(txtCantidad1.getText());
 				cant2 = Integer.parseInt(txtCantidad2.getText());
 				cant3 = Integer.parseInt(txtCantidad3.getText());
+				}catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar valores numéricos válidos", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				
 				subTotal1 = (int) (valor1 * cant1);
 				subTotal2 = (int) (valor2 * cant2);
@@ -236,7 +255,24 @@ public class FormFactura extends JFrame {
 				int totalCompra = subTotal1 + subTotal2 + subTotal3;
 				txtTotalCompra.setText(Integer.toString(totalCompra));
 				
-				sb.append("Cliente: ").append(cliente).append("\n");
+				factura.append("Cliente: ").append(cliente).append("\n");
+				factura.append("Productos:\n");
+				for(count = 0; count < Productos.length; count++) {
+					factura.append("Producto["+count+"]: ").append(Productos[count].trim()).append("\n");
+				}
+				factura.append("\nCantidad Producto [1]: ").append(cant1).append("\n");
+				factura.append("Valor Unitario Producto [1]: ").append(valor1).append("\n");
+				factura.append("Subtotal Producto [1]: ").append(subTotal1).append("\n");
+				
+				factura.append("\nCantidad Producto [2]: ").append(cant2).append("\n");
+				factura.append("Valor Unitario Producto [2]: ").append(valor2).append("\n");
+				factura.append("Subtotal Producto [2]: ").append(subTotal2).append("\n");
+				
+				factura.append("\nCantidad Producto [3]: ").append(cant3).append("\n");
+				factura.append("Valor Unitario Producto [3]: ").append(valor3).append("\n");
+				factura.append("Subtotal Producto [3]: ").append(subTotal3).append("\n");
+				
+				txtResultado.setText(factura.toString());
 			}
 		});
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
@@ -274,9 +310,10 @@ public class FormFactura extends JFrame {
 		btnCliente.setBounds(244, 111, 102, 21);
 		panel.add(btnCliente);
 		
-		JTextArea areaResultado = new JTextArea();
-		areaResultado.setBounds(320, 173, 244, 394);
-		panel.add(areaResultado);
+		JTextArea txtResultado = new JTextArea();
+		txtResultado.setWrapStyleWord(true);
+		txtResultado.setBounds(354, 171, 229, 348);
+		panel.add(txtResultado);
 
 	}
 }
