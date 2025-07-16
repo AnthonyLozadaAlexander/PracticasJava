@@ -17,7 +17,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
 public class FormFactura extends JFrame {
-
+	
+	private String cliente;
+	
+	private String Productos[] = new String[3];
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtCliente;
@@ -96,22 +100,22 @@ public class FormFactura extends JFrame {
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("PRODUCTO");
 		lblNewLabel_1_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1.setBounds(28, 162, 76, 45);
+		lblNewLabel_1_1_1.setBounds(28, 171, 76, 36);
 		panel.add(lblNewLabel_1_1_1);
 		
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("VALOR UNITARIO");
 		lblNewLabel_1_1_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_1.setBounds(152, 162, 130, 45);
+		lblNewLabel_1_1_1_1.setBounds(152, 171, 130, 36);
 		panel.add(lblNewLabel_1_1_1_1);
 		
 		JLabel lblNewLabel_1_1_1_2 = new JLabel("CANTIDAD");
 		lblNewLabel_1_1_1_2.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_2.setBounds(28, 310, 76, 36);
+		lblNewLabel_1_1_1_2.setBounds(28, 305, 76, 25);
 		panel.add(lblNewLabel_1_1_1_2);
 		
 		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("VALOR TOTAL");
 		lblNewLabel_1_1_1_1_1.setFont(new Font("CaskaydiaMono NF SemiBold", Font.BOLD, 15));
-		lblNewLabel_1_1_1_1_1.setBounds(116, 310, 96, 36);
+		lblNewLabel_1_1_1_1_1.setBounds(158, 305, 96, 25);
 		panel.add(lblNewLabel_1_1_1_1_1);
 		
 		txtProducto1 = new JTextField();
@@ -125,12 +129,12 @@ public class FormFactura extends JFrame {
 		txtValorU_1.setColumns(10);
 		
 		txtCantidad1 = new JTextField();
-		txtCantidad1.setBounds(28, 349, 76, 18);
+		txtCantidad1.setBounds(28, 333, 76, 18);
 		panel.add(txtCantidad1);
 		txtCantidad1.setColumns(10);
 		
 		txtValorT1 = new JTextField();
-		txtValorT1.setBounds(126, 349, 86, 18);
+		txtValorT1.setBounds(158, 333, 86, 18);
 		panel.add(txtValorT1);
 		txtValorT1.setColumns(10);
 		
@@ -156,22 +160,22 @@ public class FormFactura extends JFrame {
 		
 		txtCantidad2 = new JTextField();
 		txtCantidad2.setColumns(10);
-		txtCantidad2.setBounds(28, 377, 76, 18);
+		txtCantidad2.setBounds(28, 361, 76, 18);
 		panel.add(txtCantidad2);
 		
 		txtValorT2 = new JTextField();
 		txtValorT2.setColumns(10);
-		txtValorT2.setBounds(126, 377, 86, 18);
+		txtValorT2.setBounds(158, 361, 86, 18);
 		panel.add(txtValorT2);
 		
 		txtCantidad3 = new JTextField();
 		txtCantidad3.setColumns(10);
-		txtCantidad3.setBounds(28, 405, 76, 18);
+		txtCantidad3.setBounds(28, 389, 76, 18);
 		panel.add(txtCantidad3);
 		
 		txtValorT3 = new JTextField();
 		txtValorT3.setColumns(10);
-		txtValorT3.setBounds(126, 405, 86, 18);
+		txtValorT3.setBounds(158, 389, 86, 18);
 		panel.add(txtValorT3);
 		
 		lblNewLabel_1_1_1_3 = new JLabel("TOTAL COMPRA:");
@@ -181,7 +185,7 @@ public class FormFactura extends JFrame {
 		
 		txtTotalCompra = new JTextField();
 		txtTotalCompra.setColumns(10);
-		txtTotalCompra.setBounds(150, 447, 86, 18);
+		txtTotalCompra.setBounds(133, 447, 86, 18);
 		panel.add(txtTotalCompra);
 		
 		lblResultado = new JLabel("");
@@ -192,7 +196,7 @@ public class FormFactura extends JFrame {
 		JButton btnCalcular = new JButton("CALCULAR");
 		btnCalcular.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cliente;
+				StringBuilder sb = new StringBuilder("Datos de la Factura:\n");
 				double valor1, valor2, valor3;
 				int cant1, cant2, cant3;
 				int subTotal1, subTotal2, subTotal3;
@@ -209,7 +213,10 @@ public class FormFactura extends JFrame {
 					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 3", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				
+				if(cliente.trim().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				
 				valor1 = Double.parseDouble(txtValorU_1.getText());
 				valor2 = Double.parseDouble(txtValorU_2.getText());
@@ -227,11 +234,13 @@ public class FormFactura extends JFrame {
 				txtValorT2.setText(Integer.toString(subTotal2));
 				txtValorT3.setText(Integer.toString(subTotal3));
 				int totalCompra = subTotal1 + subTotal2 + subTotal3;
+				txtTotalCompra.setText(Integer.toString(totalCompra));
 				
+				sb.append("Cliente: ").append(cliente).append("\n");
 			}
 		});
 		btnCalcular.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
-		btnCalcular.setBounds(20, 476, 122, 25);
+		btnCalcular.setBounds(20, 476, 102, 25);
 		panel.add(btnCalcular);
 		
 		btnSalir = new JButton("Salir");
@@ -250,8 +259,8 @@ public class FormFactura extends JFrame {
 		btnCliente = new JButton("Ingresar");
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String cliente = txtCliente.getText();
-				if(txtCliente.getText().isEmpty()) {
+				cliente = txtCliente.getText();
+				if(cliente.trim().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Debe ingresar el nombre del cliente", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -266,7 +275,7 @@ public class FormFactura extends JFrame {
 		panel.add(btnCliente);
 		
 		JTextArea areaResultado = new JTextArea();
-		areaResultado.setBounds(318, 173, 244, 394);
+		areaResultado.setBounds(320, 173, 244, 394);
 		panel.add(areaResultado);
 
 	}
