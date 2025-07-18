@@ -249,17 +249,44 @@ public class FormFactura extends JFrame {
 					JOptionPane.showMessageDialog(null, "La cantidad de productos debe ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-				else if(cant1 > 10 || cant2 > 10 || cant3 > 10) {
+				else if(cant1 >= 10 || cant2 >= 10 || cant3 >= 10) {
 					JOptionPane.showMessageDialog(null, "Aplica Descuento del 10% por compras mayores a 10 unidades", "Descuento", JOptionPane.INFORMATION_MESSAGE);
-					subTotal1 = (double) (valor1 * cant1);
-					subTotal2 = (double) (valor2 * cant2);
-					subTotal3 = (double) (valor3 * cant3);
 					
-					txtValorT1.setText(Double.toString(subTotal1 - (subTotal1 * 0.10)));
-					txtValorT2.setText(Double.toString(subTotal2 - (subTotal2 * 0.10)));
-					txtValorT3.setText(Double.toString(subTotal3 - (subTotal3 * 0.10)));
+					// Aplicamos el descuento del 10% si la cantidad es mayor a 10
+					if(cant1 >= 10) {
+						subTotal1 = (Double) (valor1 * cant1);
+						subTotal1 = subTotal1 - (subTotal1 * 0.10);
+						txtValorT1.setText(Double.toString(subTotal1));
+					}
+					// Si la cantidad es menor o igual a 10, no se aplica descuento
+					else {
+						subTotal1 = (Double) (valor1 * cant1);
+						txtValorT1.setText(Double.toString(subTotal1));
+					}
+					
+					if(cant2 >= 10) {
+						subTotal2 = (Double) (valor2 * cant2);
+						subTotal2 = subTotal2 - (subTotal2 * 0.10);
+						txtValorT2.setText(Double.toString(subTotal2));
+					} else {
+						subTotal2 = (Double) (valor2 * cant2);
+						txtValorT2.setText(Double.toString(subTotal2));
+					}
+					
+					if(cant3 >= 10) {
+						subTotal3 = (Double) (valor3 * cant3);
+						subTotal3 = subTotal3 - (subTotal3 * 0.10);
+						txtValorT3.setText(Double.toString(subTotal3));
+					} else {
+						subTotal3 = (Double) (valor3 * cant3);
+						txtValorT3.setText(Double.toString(subTotal3));
+					}
+					totalCompra = subTotal1 + subTotal2 + subTotal3;
+					txtTotalCompra.setText(Double.toString(totalCompra));
 				}
+				else {
 				
+				// Si las cantidades son menores o iguales a 10, no se aplica descuento
 				subTotal1 = (Double) (valor1 * cant1);
 				subTotal2 = (Double) (valor2 * cant2);
 				subTotal3 = (Double) (valor3 * cant3);
@@ -269,6 +296,9 @@ public class FormFactura extends JFrame {
 				txtValorT3.setText(Double.toString(subTotal3));
 				totalCompra = subTotal1 + subTotal2 + subTotal3;
 				txtTotalCompra.setText(Double.toString(totalCompra));
+				
+				}
+				
 				
 				factura.append("Cliente: ").append(cliente).append("\n");
 				factura.append("Productos:\n");
@@ -330,6 +360,30 @@ public class FormFactura extends JFrame {
 		txtResultado.setWrapStyleWord(true);
 		txtResultado.setBounds(340, 178, 229, 348);
 		panel.add(txtResultado);
+		
+		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtCliente.setText("");
+				txtProducto1.setText("");
+				txtValorU_1.setText("");
+				txtCantidad1.setText("");
+				txtValorT1.setText("");
+				txtProducto2.setText("");
+				txtValorU_2.setText("");
+				txtCantidad2.setText("");
+				txtValorT2.setText("");
+				txtProducto3.setText("");
+				txtValorU_3.setText("");
+				txtCantidad3.setText("");
+				txtValorT3.setText("");
+				txtTotalCompra.setText("");
+				txtResultado.setText(""); // Limpiar el JTextArea
+			}
+		});
+		btnLimpiar.setFont(new Font("CaskaydiaMono NF SemiBold", Font.PLAIN, 14));
+		btnLimpiar.setBounds(18, 511, 104, 36);
+		panel.add(btnLimpiar);
 
 	}
 }
