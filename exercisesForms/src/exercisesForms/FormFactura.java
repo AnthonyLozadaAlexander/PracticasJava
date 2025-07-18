@@ -199,7 +199,7 @@ public class FormFactura extends JFrame {
 				StringBuilder factura = new StringBuilder("Datos de la Factura:\n");
 				double valor1, valor2, valor3;
 				int cant1, cant2, cant3;
-				int subTotal1, subTotal2, subTotal3;
+				double subTotal1, subTotal2, subTotal3, totalCompra;
 				
 				if(txtCantidad1.getText().isEmpty() || txtValorU_1.getText().isEmpty() || txtProducto1.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos del producto 1", "Error", JOptionPane.ERROR_MESSAGE);
@@ -245,15 +245,30 @@ public class FormFactura extends JFrame {
 					return;
 				}
 				
-				subTotal1 = (int) (valor1 * cant1);
-				subTotal2 = (int) (valor2 * cant2);
-				subTotal3 = (int) (valor3 * cant3);
+				if(cant1 <= 0 || cant2 <= 0 || cant3 <= 0) {
+					JOptionPane.showMessageDialog(null, "La cantidad de productos debe ser mayor a 0", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				else if(cant1 > 10 || cant2 > 10 || cant3 > 10) {
+					JOptionPane.showMessageDialog(null, "Aplica Descuento del 10% por compras mayores a 10 unidades", "Descuento", JOptionPane.INFORMATION_MESSAGE);
+					subTotal1 = (double) (valor1 * cant1);
+					subTotal2 = (double) (valor2 * cant2);
+					subTotal3 = (double) (valor3 * cant3);
+					
+					txtValorT1.setText(Double.toString(subTotal1 - (subTotal1 * 0.10)));
+					txtValorT2.setText(Double.toString(subTotal2 - (subTotal2 * 0.10)));
+					txtValorT3.setText(Double.toString(subTotal3 - (subTotal3 * 0.10)));
+				}
 				
-				txtValorT1.setText(Integer.toString(subTotal1));
-				txtValorT2.setText(Integer.toString(subTotal2));
-				txtValorT3.setText(Integer.toString(subTotal3));
-				int totalCompra = subTotal1 + subTotal2 + subTotal3;
-				txtTotalCompra.setText(Integer.toString(totalCompra));
+				subTotal1 = (Double) (valor1 * cant1);
+				subTotal2 = (Double) (valor2 * cant2);
+				subTotal3 = (Double) (valor3 * cant3);
+				
+				txtValorT1.setText(Double.toString(subTotal1));
+				txtValorT2.setText(Double.toString(subTotal2));
+				txtValorT3.setText(Double.toString(subTotal3));
+				totalCompra = subTotal1 + subTotal2 + subTotal3;
+				txtTotalCompra.setText(Double.toString(totalCompra));
 				
 				factura.append("Cliente: ").append(cliente).append("\n");
 				factura.append("Productos:\n");
